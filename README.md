@@ -1,3 +1,3 @@
-# flutter_starter_boilerplate
+# bowindo
 
 A new Flutter project.
