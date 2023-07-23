@@ -2,6 +2,7 @@ import 'package:fpdart/fpdart.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../domain/core/unions/failure.dart';
+import '../../domain/model/employee/employee.dart';
 import '../../domain/model/login/login_entity.dart';
 import '../../domain/repository/my_repository.dart';
 import '../local/data_source/local_data_source.dart';
@@ -46,5 +47,15 @@ class MyRepositoryImpl implements MyRepository {
   Future<Either<Failure, void>> logout() async {
     await _localDataSource.removeAccessToken();
     return right(null);
+  }
+
+  @override
+  Future<Either<Failure, List<Employee>>> getEmployeeList() async {
+    final body = await _remoteDataSource.getEmployeeList();
+    if (body.data == null) {
+      return left(Failure.defaultError(error: body.message));
+    } else {
+      return right(body.data!.map((e) => e.toDomain()).toList());
+    }
   }
 }

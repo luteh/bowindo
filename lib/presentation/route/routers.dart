@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../di/injection_container.dart';
+import '../bloc/home/home_bloc.dart';
 import '../bloc/home_bottom_navbar/home_bottom_navbar_bloc.dart';
 import '../bloc/login/login_bloc.dart';
 import '../bloc/onboarding/onboarding_bloc.dart';
@@ -59,8 +60,12 @@ final routers = GoRouter(
       routes: [
         GoRoute(
           path: RouteName.home,
-          pageBuilder: (context, state) => const NoTransitionPage(
-            child: HomePage(),
+          pageBuilder: (context, state) => NoTransitionPage(
+            child: BlocProvider(
+              create: (context) =>
+                  getIt.get<HomeBloc>()..add(const HomeEvent.started()),
+              child: const HomePage(),
+            ),
           ),
         ),
         GoRoute(

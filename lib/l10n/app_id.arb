@@ -1,9 +1,12 @@
 {
   "appName": "My App",
   "comingSoon": "Segera Hadir",
+  "email": "Surel",
   "home": "Beranda",
+  "id": "Id",
   "login": "Masuk",
   "logout": "Keluar",
+  "name": "Nama",
   "next": "Selanjutnya",
   "password": "Kata Sandi",
   "previous": "Sebelumnya",

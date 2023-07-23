@@ -13,12 +13,28 @@ class MyApiService {
 
   MyApiService(this._myClient, @Named(DependencyName.baseUrl) this._baseUrl);
 
-  Uri _getUrl({String endpoint = ''}) => Uri.parse('$_baseUrl$endpoint');
+  Uri _getUrl({
+    String endpoint = '',
+    Map<String, dynamic>? queryParameters,
+  }) =>
+      Uri.https(_baseUrl, endpoint, queryParameters);
 
   Future<Response> login(LoginRequest request) {
     return _myClient.post(
       _getUrl(endpoint: Endpoint.login),
       body: request.toJson(),
+    );
+  }
+
+  Future<Response> getEmployeeList() {
+    return _myClient.get(
+      _getUrl(
+        endpoint: Endpoint.employeeList,
+        queryParameters: {
+          'branch_id': '%',
+          'department_id': '%',
+        },
+      ),
     );
   }
 }

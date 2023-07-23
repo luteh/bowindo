@@ -1,9 +1,12 @@
 {
   "appName": "My App",
   "comingSoon": "Coming Soon",
+  "email": "Email",
   "home": "Home",
+  "id": "Id",
   "login": "Login",
   "logout": "Logout",
+  "name": "Name",
   "next": "Next",
   "password": "Password",
   "previous": "Previous",

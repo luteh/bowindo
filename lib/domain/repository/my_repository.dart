@@ -1,6 +1,7 @@
 import 'package:fpdart/fpdart.dart';
 
 import '../core/unions/failure.dart';
+import '../model/employee/employee.dart';
 import '../model/login/login_entity.dart';
 
 abstract class MyRepository {
@@ -16,4 +17,6 @@ abstract class MyRepository {
   Either<Failure, String> getAccessToken();
 
   Future<Either<Failure, void>> logout();
+
+  Future<Either<Failure, List<Employee>>> getEmployeeList();
 }

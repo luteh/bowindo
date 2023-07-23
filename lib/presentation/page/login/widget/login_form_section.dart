@@ -16,7 +16,7 @@ class LoginFormSection extends StatelessWidget {
       children: [
         Icon(
           Icons.flutter_dash_rounded,
-          size: Sizes.width100,
+          size: Sizes.height100,
           color: Theme.of(context).primaryColor,
         ),
         SizedBox(height: Sizes.height32),

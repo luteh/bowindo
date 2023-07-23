@@ -1,8 +1,6 @@
 import 'dart:developer';
-import 'dart:isolate';
 
 import 'package:flutter/foundation.dart';
-import 'package:flutter/services.dart';
 import 'package:fpdart/fpdart.dart';
 
 import '../unions/failure.dart';
@@ -36,7 +34,8 @@ abstract class BaseUCWithoutParam<Result> {
 abstract class BaseUCFuture<Result, Param> {
   Future<Either<Failure, Result>> call(Param param) async {
     try {
-      return await _executeOnIsolate(execute: () => execute(param));
+      // return await _executeOnIsolate(execute: () => execute(param));
+      return await execute(param);
     } catch (e) {
       _logException(e);
       return Left(Failure.getException(e));
@@ -49,7 +48,8 @@ abstract class BaseUCFuture<Result, Param> {
 abstract class BaseUCFutureWithoutParam<Result> {
   Future<Either<Failure, Result>> call() async {
     try {
-      return await _executeOnIsolate(execute: () => execute());
+      // return await _executeOnIsolate(execute: () => execute());
+      return await execute();
     } catch (e) {
       _logException(e);
       return Left(Failure.getException(e));
@@ -59,7 +59,7 @@ abstract class BaseUCFutureWithoutParam<Result> {
   Future<Either<Failure, Result>> execute();
 }
 
-Future<Either<Failure, Result>> _executeOnIsolate<Result>(
+/* Future<Either<Failure, Result>> _executeOnIsolate<Result>(
     {required Future<Either<Failure, Result>> Function() execute}) async {
   RootIsolateToken? rootIsolateToken = RootIsolateToken.instance;
   if (rootIsolateToken == null) {
@@ -97,7 +97,7 @@ Future<void> _isolateFunction<Result>(
 
   // Send the result back to the main isolate
   sendPort.send(result);
-}
+} */
 
 void _logException(Object e) {
   if (kReleaseMode) return;
