@@ -15,12 +15,12 @@ abstract class RegisterModule {
   @Named(DependencyName.baseUrl)
   @lazySingleton
   @dev
-  String get baseUrlDev => 'bowindo.servehttp.com/dev';
+  String get baseUrlDev => 'bowindo.servehttp.com';
 
   @Named(DependencyName.baseUrl)
   @lazySingleton
   @stg
-  String get baseUrlStg => 'bowindo.servehttp.com/stg';
+  String get baseUrlStg => 'bowindo.servehttp.com';
 
   @lazySingleton
   @dev
